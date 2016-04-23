@@ -1,0 +1,258 @@
+<script>
+	// $(function(){
+ //      $("#headerInclude").load("/header.html.erb"); 
+ //    });
+
+ //    $(function(){
+ //      $("#footerInclude").load("/footer.html.erb"); 
+ //    });	
+</script>
+
+<script type="text/javascript"
+    src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+<!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="/reel.png" width="60px" height="60px">
+                <a class="navbar-brand page-scroll" href="/session/homepage">#TeleVisioExpress</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <% if @user %>
+                    <li>
+                        <a class="page-scroll" href="/session/destroy">Logout</a>
+                    </li>
+                     <li>
+                        <a class="page-scroll" href="/session/profile"><%= @user.username %></a>
+                    </li>
+                    <% else %>
+                    <li>
+
+                        <a class="page-scroll" href="/welcome/register">Register/Login</a>
+                    </li>
+                    <% end %>
+                    <li>
+                        <a class="page-scroll" href="/discover/discover_shows">Discover</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/session/tvshows">Tvshow</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav><br><br><br><br><br><br>
+
+    
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script type="text/javascript"> 
+    
+</script>
+
+<!-- <div id="headerInclude"></div> -->
+
+<div class="main_a_show">
+    <div class="img_single_show" style="float: left;" >
+        <p>Poster</p>
+        <img src="<%= @this_show.image %>" class="poster">
+    </div>
+    <div>
+        <label style="display: inline;"><%= @this_show.name %></label>(<%= @this_show.year %>)<br>
+        <i class="material-icons" style="font-size:20px; display: inline;color: yellow;">grade</i>
+        <label style="font-size: 20px; display: inline;"><%= @this_show.rating %>/10</label><br>
+        <br><br>
+        <div style="margin-left: 5px;margin-right: 5px;">
+            <label style="font-size: 15px;">Storyline</label> 
+            <p style="margin-right: 2px; font-size: 16px;"><%= @this_show.storyline %></p><br>
+            <label style="font-size: 15px">Credits:</label>
+            <label style="font-size: 15px; display: inline;">Created By :</label><%= @this_show.director %><br><br><br><br><br>
+            <label style="font-size: 15px; ">Cast :</label><p style="font-size: 15px"><%= @this_show.cast %></p><br>
+            <label style="font-size: 15px; display: inline;">Languages: </label><%= @this_show.language %><br><br>
+
+            <label style="font-size: 15px; display: inline;">Genre: </label>
+                <% @genre.each do |genres| %>
+                <%= genres.category_name %>
+                <% end %>
+                <br><br>
+
+            <label style="font-size: 15px; display: inline;">Seasons: </label><%= @this_show.no_seasons %><br><br>
+            <label style="font-size: 15px; display: inline;">Aired on: </label><%= @this_show.aired_on %><br><br>
+            <%= link_to "Seasons", a_season_path(@this_show.id) %><br>
+
+            <% if @user %>
+                <%= link_to "Give Reviews", give_review_path(@this_show.id) %><br>
+                <p class="flip">Click here to Show/Hide Review Panel</p>
+            <% end %>
+
+
+            <div class="give_review_tvshow" id="give_review_tvshow">
+                
+                <form method="post" action="/session/tvshows/review">
+                    <input type="hidden" name="tvshows_id" value="<%= @this_show.id %>"></input>
+                    Give review below<br>
+                    <textarea name="review" rows="6" cols="80" required></textarea><br>
+                    <input type="submit" value="Give Review"></input>
+                </form>
+            </div>
+
+
+            <%= link_to "Reviews", view_review_path(@this_show.id) %><br>
+            <%= link_to "Ratings", view_rating_path(@this_show.id) %><br>
+            <% if @user %>
+                <%= link_to "Give Rating", give_rating_path(@this_show.id) %><br>
+                <p class="flip2">Click here to Show/Hide Review Panel</p>
+            <% end %>
+            <div class="give_rating_tvshow" id="give_rating_tvshow">
+
+                <form method="post" action="/session/tvshows/rating">
+                    <input type="hidden" name="tvshows_id" value="<%= @this_show.id %>"></input>
+                    Give rating below<br>
+                    <div id="shop"></div>
+                    <input type="hidden" id="rating" name="rating" value="0"></input>
+                    <input type="submit" value="Give Rating"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    #give_review_tvshow, #give_rating_tvshow {
+        display: none;
+    }
+    .give_review_tvshow, .give_rating_tvshow {
+        /*border: 1px solid #000;*/
+        width: 700px;
+        height: auto;
+        margin: auto;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".flip").click(function() {
+            $("#give_review_tvshow").slideToggle("slow");
+        });
+    });
+    $(document).ready(function() {
+        $(".flip2").click(function() {
+            $("#give_rating_tvshow").slideToggle("slow");
+        });
+    });
+</script>
+
+
+<script>
+
+  /**
+   * Demo in action!
+   */
+  (function() {
+
+    'use strict';
+
+    var rated;
+
+    // SHOP ELEMENT
+    var shop = document.querySelector('#shop');
+
+    // DUMMY DATA
+    var data = [
+      {
+        rating: null
+      }
+    ];
+
+    // INITIALIZE
+    (function init() {
+      for (var i = 0; i < data.length; i++) {
+        addRatingWidget(buildShopItem(data[i]), data[i]);
+      }
+    })();
+
+    // BUILD SHOP ITEM
+    function buildShopItem(data) {
+      var shopItem = document.createElement('div');
+
+      var html =
+        '<div class="c-shop-item__details">' +
+          '<ul class="c-rating"></ul>' +
+        '</div>';
+
+      shopItem.classList.add('c-shop-item');
+      shopItem.innerHTML = html;
+      shop.appendChild(shopItem);
+
+      return shopItem;
+    }
+
+    // ADD RATING WIDGET
+    function addRatingWidget(shopItem, data) {
+      var ratingElement = shopItem.querySelector('.c-rating');
+      var currentRating = data.rating;
+      var maxRating = 10;
+      var callback = function(rating) { 
+            // alert(rating);
+            rated = rating;
+            document.getElementById('rating').value = rated; 
+        };
+      var r = rating(ratingElement, currentRating, maxRating, callback);
+    }
+
+  })();
+
+</script>
+<!-- <div id="footerInclude"></div> -->
+
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+
+<!-- 
+<div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</footer>
+</div> -->

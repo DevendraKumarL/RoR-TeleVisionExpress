@@ -1,0 +1,74 @@
+<!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="/reel.png" width="60px" height="60px">
+                <a class="navbar-brand page-scroll" href="/session/homepage">#TeleVisioExpress</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <% if @user %>
+                    <li>
+                        <a class="page-scroll" href="/session/destroy">Logout</a>
+                    </li>
+                     <li>
+                        <a class="page-scroll" href="/session/profile"><%= @user.username %></a>
+                    </li>
+                    <% else %>
+                    <li>
+
+                        <a class="page-scroll" href="/welcome/register">Register/Login</a>
+                    </li>
+                    <% end %>
+                    <li>
+                        <a class="page-scroll" href="/discover/discover_shows">Discover</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/session/tvshows">Tvshow</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav><br><br><br><br><br><br>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<div class="episode">
+    <h4><b><%= @tvshow_name.name %></b></h4>
+
+    <h3 style="display: inline;"><b><%= @this_episode.episode_name %></b></h3>
+     <i class="material-icons" style="font-size:15px; display: inline;">event</i>
+     <b style="font-size: 15px;"><%= @this_episode.air_date %></b>
+    <img src="<%= @this_episode.image %>" style="display: block;" class="episode_image">
+    <b style="margin-left: 20px;">Rating : </b> 
+        <i class="material-icons" style="font-size:20px; display: inline;color: yellow;">grade</i>
+        <%= @this_episode.rating %>/10<br><br>
+        <b style="margin-left: 20px;"> Episode Overview</b>
+        <p style="margin-left: 20px;margin-right: 20px;">
+            <%= @this_episode.episode_description %>
+        </p>
+    <%= link_to "Reviews", episode_view_review_path(@this_episode.id) %><br> 
+        <% if @user %>
+            <%= link_to "Give Review", episode_give_review_path(@this_episode.id) %><br>
+        <% end %>
+    <%= link_to "Ratings", episode_view_rating_path(@this_episode.id) %><br> 
+        <% if @user %>
+            <%= link_to "Give Rating", episode_give_rating_path(@this_episode.id) %><br>
+        <% end %> 
+</div>
