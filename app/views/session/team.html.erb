@@ -1,14 +1,41 @@
-<script>
-	$(function(){
-      $("#headerInclude").load("/header.html.erb"); 
-    });
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    $(function(){
-      $("#footerInclude").load("/footer.html.erb"); 
-    });	
-</script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
 
-<div id="headerInclude"></div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"><br>
+          <a class="navbar-brand navbar-btn" href="/session/homepage" style="font-size: 35px;">#TeleVisioExpress</a>
+        </div><br>
+          <ul class="nav navbar-nav navbar-right">
+            <% if @user %>
+                <script>
+                    swal(
+                        'Logged In',
+                        'Welcome to our Website',
+                        'success'
+                        )
+                </script>
+                
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
+                
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+
+            <% else %>
+                
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/welcome/register">Register/Login</a></button></li>
+     
+            <% end %>
+
+            <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/tvshows">TVShows</a></button></li>
+
+            <li><a class="btn btn-default navbar-btn btn-sm"  href="/discover/discover_shows">Discover</a></button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
 <!-- Team Section -->
     <section id="team" class="bg-light-gray">
@@ -51,13 +78,5 @@
                     </div>
                 </div>
             </div>
-  <!--           <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
-            </div> -->
         </div>
     </section>
-
-
-<!-- <div id="footerInclude"></div> -->

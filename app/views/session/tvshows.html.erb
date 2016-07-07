@@ -2,53 +2,42 @@
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
-<!-- Navigation -->
 
-    <nav class="navbar navbar-default navbar-fixed-top" >
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img src="/reel.png" width="60px" height="60px">
-                <a class="navbar-brand page-scroll" href="/session/homepage">#TeleVisioExpress</a>
-            </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"><br>
+          <a class="navbar-brand navbar-btn" href="/session/homepage" style="font-size: 35px;">#TeleVisioExpress</a>
+        </div><br>
+          <ul class="nav navbar-nav navbar-right">
+            <% if @user %>
+                <script>
+                    swal(
+                        'Logged In',
+                        'Welcome to our Website',
+                        'success'
+                        )
+                </script>
+                
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
+                
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <% if @user %>
-                    <li>
-                        <a class="page-scroll" href="/session/destroy">Logout</a>
-                    </li>
-                     <li>
-                        <a class="page-scroll" href="/session/profile"><%= @user.username %></a>
-                    </li>
-                    <% else %>
-                    <li>
+            <% else %>
+                
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/welcome/register">Register/Login</a></button></li>
+     
+            <% end %>
 
-                        <a class="page-scroll" href="/welcome/register">Register/Login</a>
-                    </li>
-                    <% end %>
-                    <li>
-                        <a class="page-scroll" href="/discover/discover_shows">Discover</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+            <li><a class="btn btn-default navbar-btn btn-sm"  href="/discover/discover_shows">Discover</a></button></li>
+
+            <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/team">Team</a></button></li>
+          </ul>
         </div>
-        <!-- /.container-fluid -->
+      </div>
     </nav>
 
 <br><br><br><br><br><br>
-
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
@@ -58,9 +47,9 @@
     <div class="row">
         <% @all_shows.each do |show| %>
             <div class="card col-lg-4 col-md-3">
-                <img src="<%= show.image %>" class="card-img-top img-thumbnail" alt="<%= show.name %>" width="318px" height="180px" style="max-width: 318px; max-height: 180px;">
+                <img src="<%= show.image %>" class="card-img-top img-thumbnail" alt="<%= show.name %>" width="318px" height="180px" style="width: 100%; max-height: 180px;">
                 <div class="card-block">
-                    <h4 class="card-title"><%= show.name %></h4>
+                    <center><h4 class="card-title"><%= show.name %></h4></center>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <i class="material-icons" style="font-size:15px; display: inline;  margin-left: 100px;">event</i><%= show.year %>
