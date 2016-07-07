@@ -9,6 +9,9 @@
 <% end %>
 
 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+
 <<!-- Navigation -->
 
     <nav class="navbar navbar-default navbar-fixed-top" >
@@ -47,51 +50,82 @@
         <!-- /.container-fluid -->
     </nav><br><br><br><br><br><br>
 
-
-    <div class="register_form">
-        <center><h4 style="padding-top: 5px;">Register</h4></center><br>
-        <form method="post" action="/welcome/create_user">
-            <input type="text" name="username" placeholder="Username" id="username" style="display:block;" required><br>
-            <input type="text" name="email" placeholder="Email" id="email" style="display:block;" required><br>
-            <input type="password" name="password" placeholder="Password" id="password" style="display:block;" required><br>
-            <input type="password" name="password2" placeholder="Re-type password" id="password2" style="display:block;" required><br>
-            <input type="submit" value="Register" id="style_button" style="display:block;" ><br>
-        </form>
+    <!-- Bootstrap -->
+    <div class="container">
+        <center><div class="row col-lg-5 col-sm-2 col-lg-offset-3">
+            <div class="jumbotron">
+                <h3>Register</h3>
+                <p>Register today and get all the information about the latest TvShows here.</p>
+            </div>
+            <form role="form" method="post" action="/welcome/create_user">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="E-Mail" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Re-Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-info btn-block" value="Register">
+                </div>
+            </form>
+            <div class="alert alert-info">
+                <strong>Already a member ?</strong>
+                <a href="/session/log_user" class="btn btn-info btn-link">Login</a>
+            </div>
+        </div></center>
     </div>
+
+
+<!--     <div class="register_form">
+    <center><h4 style="padding-top: 5px;">Register</h4></center><br>
+    <form method="post" action="/welcome/create_user">
+        <input type="text" name="username" placeholder="Username" id="username" style="display:block;" required><br>
+        <input type="text" name="email" placeholder="Email" id="email" style="display:block;" required><br>
+        <input type="password" name="password" placeholder="Password" id="password" style="display:block;" required><br>
+        <input type="password" name="password2" placeholder="Re-type password" id="password2" style="display:block;" required><br>
+        <input type="submit" value="Register" id="style_button" style="display:block;" ><br>
+    </form>
+</div> -->
 
 <!--     <div id="registration-form">
-    <div class='fieldset'>
-    <legend>Register</legend>
-        <form action="/welcome/create_user" method="post" data-validate="parsley">
-            <div class='row'>
-                <label for='firstname'>User Name</label>
-                <input type="text" placeholder="User Name" name='username' id='firstname' required>
-            </div>
-            <div class='row'>
-                <label for="email">E-mail</label>
-                <input type="text" placeholder="E-mail"  name='email' required>
-            </div>
-            <div class='row'>
-                <label for="cemail">Password</label>
-                <input type="password" placeholder="Password" name='password'required>
-            </div>
-            <div class='row'>
-                <label for="cemail">Confirm your Password</label>
-                <input type="password" placeholder="Confirm your Password" name='password2' required>
-            </div>
-            <input type="submit" value="Register">
-        </form>
-    </div>
+<div class='fieldset'>
+<legend>Register</legend>
+    <form action="/welcome/create_user" method="post" data-validate="parsley">
+        <div class='row'>
+            <label for='firstname'>User Name</label>
+            <input type="text" placeholder="User Name" name='username' id='firstname' required>
+        </div>
+        <div class='row'>
+            <label for="email">E-mail</label>
+            <input type="text" placeholder="E-mail"  name='email' required>
+        </div>
+        <div class='row'>
+            <label for="cemail">Password</label>
+            <input type="password" placeholder="Password" name='password'required>
+        </div>
+        <div class='row'>
+            <label for="cemail">Confirm your Password</label>
+            <input type="password" placeholder="Confirm your Password" name='password2' required>
+        </div>
+        <input type="submit" value="Register">
+    </form>
 </div>
- -->
-<div>
-   <center> <h5>Already a member ?</h5></center>
-    <center>
-        <!-- <a id="login_link" href="/session/log_user" style="text-decoration:none; color:#777; font-size:20px;">Login</a> -->
-        <a id="login_link" href="/session/log_user" style="text-decoration:none; color:#777; font-size:20px;">Login</a>
-    </center>
 </div>
-
+-->
+<!-- <div>
+<center> <h5>Already a member ?</h5></center>
+<center>
+    <a id="login_link" href="/session/log_user" style="text-decoration:none; color:#777; font-size:20px;">Login</a>
+    <a id="login_link" href="/session/log_user" style="text-decoration:none; color:#777; font-size:20px;">Login</a>
+</center>
+</div>
+-->
 <br><br><br><br><br><br><br>
 
 

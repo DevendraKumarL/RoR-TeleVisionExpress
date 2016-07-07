@@ -8,6 +8,8 @@
  //    });	
 </script>
 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
 
 <!-- Navigation -->
 
@@ -55,69 +57,43 @@
     </nav><br><br><br><br><br><br>
 
 
-<!-- <div id="headerInclude"></div> -->
-
-
-
-
-<div class="discover_genre">
-    
-    <form method="get" action="/discover/discover_by_category">
-        <label style="text-align: center;color: #777; ">Discover By Genre</label>
-        <center><select name="category">
-        <% @categories.each do |cat| %>
-            <option><%= cat.category_name %></option>
-        <% end %>
-        </select></center><br>
-        <center><input type="submit" value="Submit"></input></center>
-    </form>
-    
-</div>
-
-<div class="discover_year">
-    <form method="get" action="/discover/discover_by_year">
-        <label style="text-align: center;color: #777;">Discovery by Year</label>
-        <center><input type="number" min="1995" max="2016" value="2000" name="year"></input><br><br>
-        <input type="submit" value="Submit"></input></center>
-    </form>
-    
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--div id="main">
-    <h6>Categories</h6>
-    <div id="categories_list">
-        <button type="submit" class="btn btn-xl" id="a-z" onclick="default_shows()" >A-Z</button> 
-        <% @categories.each do |category| %>
-       <button type="submit" class="btn btn-xl" onclick="display_these_shows()" id="<%= category.category_name %>"><%= category.category_name %></button> 
-        <% end %>
-    </div>
-
-	<div id="default_shows" class="shows" class="col-lg-12" style="display: none;">
-        
-        <div id="single_show">
-            <img src="/startup-framework.png">
-             Breaking Bad
+<div class="container">
+    <div class="row col-lg-6 col-lg-offset-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">Discover by Genre</div>
+            <div class="panel-body">
+                <form role="form" method="get" action="/discover/discover_by_category">
+                    <div class="form-group">
+                        <select class="form-control" name="category">
+                            <% @categories.each do |cat| %>
+                                <option><%= cat.category_name %></option>
+                            <% end %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block">Search <span class="glyphicon glyphicon-search"></span></button>
+                </form>                
+            </div>
         </div>
     </div>
-</div>-->
+    <div class="row col-lg-6 col-lg-offset-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">Discover by Year of Release</div>
+            <div class="panel-body">
+                <form role="form" method="get" action="/discover/discover_by_year">
+                    <div class="form-group">
+                        <input type="number" min="1995" max="2016" value="2000" name="year" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block">Search <span class="glyphicon glyphicon-search"></span></button>
+                </form>                
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- <div id="footerInclude"></div> -->
-
-<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
-<!-- <div>
+<div>
     <footer>
         <div class="container">
             <div class="row">
@@ -145,4 +121,4 @@
             </div>
         </div>
 </footer>
-</div> -->
+</div>

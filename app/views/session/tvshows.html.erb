@@ -11,6 +11,8 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
 <!-- Navigation -->
 
     <nav class="navbar navbar-default navbar-fixed-top" >
@@ -56,11 +58,37 @@
         <!-- /.container-fluid -->
     </nav><br><br><br><br><br><br>
 
-<!-- <div id="headerInclude"></div> -->
 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
 
 
 <div class="container">
+    <div class="row">
+        <% @all_shows.each do |show| %>
+            <div class="card col-lg-4 col-md-3">
+                <img src="<%= show.image %>" class="card-img-top img-thumbnail" alt="<%= show.name %>" width="318px" height="180px" style="max-width: 318px; max-height: 180px;">
+                <div class="card-block">
+                    <h4 class="card-title"><%= show.name %></h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="material-icons" style="font-size:15px; display: inline;  margin-left: 100px;">event</i><%= show.year %>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="material-icons" style="font-size:15px; display: inline;
+                            color: yellow; margin-left: 100px;">grade</i><%= show.rating %>
+                        </li>
+                    </ul>
+                    <div class="card-block">
+                        <center><a href="<%=  a_show_path(show.name)%>" class="card-link">MORE</a></center>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<!-- <div class="container">
 <% @all_shows.each do |show| %>
     <div class="demo_single_show">
         
@@ -82,11 +110,9 @@
         <img src="/startup-framework.png">
         <h4>Breaking Bad</h4>
     </div> -->
-</div>
+</div> -->
 
 
-<!-- <div id="footerInclude"></div> -->
-<!-- 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
@@ -118,4 +144,4 @@
             </div>
         </div>
 </footer>
-</div> -->
+</div>

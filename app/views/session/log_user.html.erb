@@ -58,21 +58,27 @@
     </nav><br><br><br><br><br><br>
 
 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
 
-<div id="headerInclude"></div>
-<br><br><br><br><br><br>
 
-<div class="login_form">
-    <center><h4 style="padding-top: 5px;">Login</h4></center><br>
-    <form method="post" action="/session/login_user">
-        <input type="text" name="email_log" placeholder="Email" id="email" style="display:block;" required><br>
-        <input type="password" name="password_log" placeholder="Password" id="password" style="display:block;" required><br>
-        <input type="submit" value="Login" id="style_button" style="display:block;"><br>
-    </form>
+<div class="container">
+    <center><div class="row col-lg-5 col-sm-2 col-lg-offset-3">
+        <div class="jumbotron">
+            <h3>Login</h3>
+            <p>Login to get all the information about the latest TvShows right now.</p>
+        </div>
+        <form role="form" action="/session/login_user" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="email_log" placeholder="E-Mail" id="email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password_log" placeholder="Password" id="password" required>
+            </div>
+            <input type="submit" class="btn btn-success btn-block" value="Login">
+        </form>
+    </div></center>
 </div>
-
-<br><br>
-<div id="footerInclude"></div>
 
 <br><br><br><br><br><br><br>
 

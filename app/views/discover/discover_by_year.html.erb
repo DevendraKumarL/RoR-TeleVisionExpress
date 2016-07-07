@@ -40,27 +40,54 @@
     </nav><br><br><br><br><br><br>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<% if @count == 0 %>
 
-<div class="error">
-    <label style="text-align: center; color: #fff;">Sorry no tvshow in this year</label>
-</div>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+
+
+<% if @count == 0 %>
+    <div class="container">
+        <div class="row">
+                <div class="alert alert-danger">
+                    <a href="/discover/discover_shows" class="close" data-dismiss="alert">&times</a>
+                    <strong>Sorry</strong> we could not find TVSHOWS belonging to this year from our DataBase
+                </div>
+        </div>
+    </div>
 
 <% else %>
 
-<div class="main_shows">
- <% @shows.each do |show| %>
-    <div class="demo_single_show">
-       
-        <img src="<%= show.image %>" width="400" height="250">
-        <label style="text-align: center;"><%= show.name %></label>
-        <i class="material-icons" style="font-size:15px; display: inline; margin-left: 100px;">event</i>
-        <label style="font-size: 15px; display: inline;"><%= show.year %></label>&nbsp
-        <i class="material-icons" style="font-size:15px; display: inline;color: yellow;">grade</i>
-        <label style="font-size: 15px; display: inline;"><%= show.rating %></label><br>
-         <a class="login_link" style="text-decoration:none; color:#777; font-size:20px;margin-left: 140px;" href="/session/tvshows/<%= show.name%>">More</a>
+
+    <div class="container">
+        <div class="row">
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert">&times</a>
+                    <strong>Yes</strong> we found TVSHOWS belonging to this year from our DataBase
+                </div>
+        </div>
+        <div class="row">        
+            <% @shows.each do |show| %>
+                <div class="card col-lg-4 col-md-3">
+                    <img src="<%= show.image %>" class="card-img-top img-thumbnail" alt="<%= show.name %>" width="318px" height="180px" style="max-width: 318px; max-height: 180px;">
+                    <div class="card-block">
+                        <h4 class="card-title"><%= show.name %></h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="material-icons" style="font-size:15px; display: inline;  margin-left: 100px;">event</i><%= show.year %>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="material-icons" style="font-size:15px; display: inline;
+                                color: yellow; margin-left: 100px;">grade</i><%= show.rating %>
+                            </li>
+                        </ul>
+                        <div class="card-block">
+                            <center><a href="/session/tvshows/<%= show.name %>" class="card-link">MORE</a></center>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <% end %>
-</div>
 
 <% end %>
