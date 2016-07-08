@@ -1,8 +1,7 @@
-<script type="text/javascript"
-    src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+<script type="text/javascript"src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
     
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -12,17 +11,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
                 
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -41,88 +33,123 @@
 
 <br><br><br><br><br><br>
     
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<script type="text/javascript"> 
-    
-</script>
-
-<!-- <div id="headerInclude"></div> -->
-
-<div class="main_a_show">
-    <div class="img_single_show" style="float: left;" >
-        <p>Poster</p>
-        <img src="<%= @this_show.image %>" class="poster">
+<div class="container"><br>
+    <div class="row col-lg-3">
+        <label style="margin-left: 55px;" class="label label-info">Poster</label><br>
+        <img src="<%= @this_show.image%>" class="img-thumbnail">
     </div>
-    <div>
-        <label style="display: inline;"><%= @this_show.name %></label>(<%= @this_show.year %>)<br>
-        <i class="material-icons" style="font-size:20px; display: inline;color: yellow;">grade</i>
-        <label style="font-size: 20px; display: inline;"><%= @this_show.rating %>/10</label><br>
+    <div class="row col-lg-9">
+        <h1><%= @this_show.name %></h1>
+        <h3><label class="label label-success"><%= @this_show.year %></label>
+            <label class="label label-success">
+                <i class="material-icons" style="font-size:20px; display: inline;color: yellow;">grade</i>
+                <%= @this_show.rating %>/10
+            </label>
+        </h3>
+        <span class="text-muted">Created By: </span><h6><%= @this_show.director %></h6>
         <br><br>
-        <div style="margin-left: 5px;margin-right: 5px;">
-            <label style="font-size: 15px;">Storyline</label> 
-            <p style="margin-right: 2px; font-size: 16px;"><%= @this_show.storyline %></p><br>
-            <label style="font-size: 15px">Credits:</label>
-            <label style="font-size: 15px; display: inline;">Created By :</label><%= @this_show.director %><br><br><br><br><br>
-            <label style="font-size: 15px; ">Cast :</label><p style="font-size: 15px"><%= @this_show.cast %></p><br>
-            <label style="font-size: 15px; display: inline;">Languages: </label><%= @this_show.language %><br><br>
-
-            <label style="font-size: 15px; display: inline;">Genre: </label>
+        <h6><label class="label label-info">Storyline</label></h6>
+        <div class="well">
+            <p><strong><%= @this_show.storyline %></strong></p>
+        </div>
+    </div>
+    <div class="row col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Cast</div>
+            <div class="panel-body"><%= @this_show.cast %></div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Languages</div>
+            <div class="panel-body"><%= @this_show.language %></div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Genre(s)</div>
+            <div class="panel-body">
                 <% @genre.each do |genres| %>
                 <%= genres.category_name %>
                 <% end %>
-                <br><br>
-
-            <label style="font-size: 15px; display: inline;">Seasons: </label><%= @this_show.no_seasons %><br><br>
-            <label style="font-size: 15px; display: inline;">Aired on: </label><%= @this_show.aired_on %><br><br>
-            <%= link_to "Seasons", a_season_path(@this_show.id) %><br>
-
-            <% if @user %>
-                <%= link_to "Give Reviews", give_review_path(@this_show.id) %><br>
-                <p class="flip">Click here to Show/Hide Review Panel</p>
-            <% end %>
-
-
-            <div class="give_review_tvshow" id="give_review_tvshow">
-                
-                <form method="post" action="/session/tvshows/review">
-                    <input type="hidden" name="tvshows_id" value="<%= @this_show.id %>"></input>
-                    Give review below<br>
-                    <textarea name="review" rows="6" cols="80" required></textarea><br>
-                    <input type="submit" value="Give Review"></input>
-                </form>
-            </div>
-
-
-            <%= link_to "Reviews", view_review_path(@this_show.id) %><br>
-            <%= link_to "Ratings", view_rating_path(@this_show.id) %><br>
-            <% if @user %>
-                <%= link_to "Give Rating", give_rating_path(@this_show.id) %><br>
-                <p class="flip2">Click here to Show/Hide Review Panel</p>
-            <% end %>
-            <div class="give_rating_tvshow" id="give_rating_tvshow">
-
-                <form method="post" action="/session/tvshows/rating">
-                    <input type="hidden" name="tvshows_id" value="<%= @this_show.id %>"></input>
-                    Give rating below<br>
-                    <div id="shop"></div>
-                    <input type="hidden" id="rating" name="rating" value="0"></input>
-                    <input type="submit" value="Give Rating"></input>
-                </form>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Season(s)</div>
+            <div class="panel-body">
+                <a href="<%= a_season_path(@this_show.id)%>" class="list-group-item">
+                <%= @this_show.no_seasons %></a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Aired on</div>
+            <div class="panel-body"><%= @this_show.aired_on%></div>
+        </div>
+        <div class="list-group">
+            
+            <a href="<%= view_review_path(@this_show.id) %>" class="list-group-item">Reviews</a>
+            <a href=" <%= view_rating_path(@this_show.id) %>" class="list-group-item">Ratings</a>
+     
+            <% if @user %>
+                <button type="button" data-toggle="modal" data-target="#myRating" class="list-group-item">Give Rating</button>
+            <% end %>
+            <!-- Modal -->
+            <div id="myRating" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><%= @this_show.name %></h4>
+                  </div>
+                  <div class="modal-body">
+                    <form method="post" action="/session/tvshows/rating">
+                        <input type="hidden" name="tvshows_id" value="<%= @this_show.id %>"></input>
+                        Give rating below<br>
+                        <div id="shop"></div>
+                        <input type="hidden" id="rating" name="rating" value="0"></input>
+                        <input type="submit" class="btn btn-primary" value="Give Rating"></input>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <% if @user %>
+                <button type="button" data-toggle="modal" data-target="#myReview" class="list-group-item">Give Review</button>
+            <% end %>
+
+            <div id="myReview" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><%= @this_show.name %></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="/session/tvshows/review">
+                                <input type="hidden" name="tvshows_id" value="<%= @this_show.id %>"></input>
+                                Give review below<br>
+                                <textarea name="review" class="form-control"required></textarea><br>
+                                <input type="submit" class="btn btn-primary" value="Give Review"></input>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><br>
     </div>
-</div>
+</div><br><br>
+
 
 <style type="text/css">
-    #give_review_tvshow, #give_rating_tvshow {
-        display: none;
-    }
-    .give_review_tvshow, .give_rating_tvshow {
-        /*border: 1px solid #000;*/
-        width: 700px;
-        height: auto;
-        margin: auto;
+    .container{
         box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
 
     }
@@ -202,37 +229,3 @@
   })();
 
 </script>
-<!-- <div id="footerInclude"></div> -->
-
-<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
-
-<!-- 
-<div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Your Website 2014</span>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-</footer>
-</div> -->

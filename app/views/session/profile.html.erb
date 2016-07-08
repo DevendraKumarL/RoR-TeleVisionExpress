@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
                 
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -38,8 +31,17 @@
 <br><br><br><br><br><br><br><br><br><br>
 
 
-<div class="profile">
-    <h3>User Info</h3><br>
-    Username : <%= @user_info.username %><br>
-    Email : <%= @user_info.email %>
+<div class="container">
+    <div class="jumbotron">
+        <h1><%= @user_info.username %></h1>
+        <p><%= @user_info.email %></p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </div>
 </div>

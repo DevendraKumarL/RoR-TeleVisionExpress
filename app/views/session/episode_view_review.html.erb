@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
                 
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -36,19 +29,21 @@
     </nav>
 <br><br><br><br><br><br><br><br><br><br>
 
-<div class="view_review">
-    <h3><%= @review_this_show.name %></h3>
-    <h4><%= @review_this_season.season_name %></h4>
-    <h5><%= @review_this_episode.episode_name %></h5>
-    <h6>Season Reviews by users</h6>
-    <% @episode_reviews.each do |review| %>
-    <div class="user_review">
-        <b>User ID: </b><%= review.users_id %><br>
-        <b>User: </b><%= review.username %><br>
-        <b>Review :</b><br>
-        <p>
-            <%= review.review %>
-        </p>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info"><p><h1>Episode Reviews</h1></p></div>
+        <div class="well"><%= @review_this_show.name %></div>
+        <div class="well"><%= @review_this_season.season_name %></div>
+        <label class="label label-primary"><h4><%= @review_this_episode.episode_name %></h4></label>
+        <% @episode_reviews.each do |review| %>
+            <div class="card">
+                <div class="card-block">
+                    <p class="card-title" style="font-size: 20px"><%= review.username %></p>
+                    <p class="card-text">
+                        <%= review.review %>
+                    </p>
+                </div>
+            </div>
+        <% end %>
     </div>
-    <% end %>
 </div>

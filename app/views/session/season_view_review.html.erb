@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
                 
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -37,18 +30,20 @@
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<div class="view_review">
-    <h3><%= @review_this_show.name %></h3>
-    <h4><%= @review_this_season.season_name %></h4>
-    <label>Season Reviews by users</label>
-    <% @season_reviews.each do |review| %>
-    <div class="user_review">
-        <!-- <b>User ID: </b><%= review.users_id %><br> -->
-        User: <b><%= review.username %></b><br>
-        Review :<br><b>
-        <div class="review_section"><p>
-            <%= review.review %>
-        </p></div></b>
-    </div><br>
-    <% end %>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info"><p><h1>Season Reviews</h1></p></div>
+        <div class="well"><%= @review_this_show.name %></div>
+        <label class="label label-primary"><h4><%= @review_this_season.season_name %></h4></label>
+        <% @season_reviews.each do |review| %>
+            <div class="card">
+                <div class="card-block">
+                    <p class="card-title" style="font-size: 20px"><%= review.username %></p>
+                    <p class="card-text">
+                        <%= review.review %>
+                    </p>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </div>

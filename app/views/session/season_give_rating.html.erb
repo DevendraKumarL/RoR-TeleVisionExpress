@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
                 
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -37,17 +30,21 @@
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<div class="view_review">
-    <h3><%= @rating_this_show.name %></h3>
-    <h4><%= @rating_this_season.season_name %></h4>
-    <form method="post" action="/session/tvshows/season/rating">
-        <input type="hidden" name="seasons_id" value="<%= @rating_this_season.id %>"></input>
-        Give rating below<br>
-        <!-- <input type="number" min=1 max=10 value=1 name="rating" required></input><br> -->
-        <div id="shop"></div>
-        <input type="hidden" id="rating" name="rating" value="0"></input>
-        <input type="submit" value="Give Rating"></input>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+            <h1><%= @rating_this_show.name %></h1>
+            <p><%= @rating_this_season.season_name  %></p>
+        </div>
+        <form crole="form" method="post" action="/session/tvshows/season/rating">
+            <input type="hidden" name="seasons_id" value="<%= @rating_this_season.id%>"></input>
+            <div id="shop"></div>
+            <input type="hidden" id="rating" name="rating" value="0"></input>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="Give Rating"></input>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- <script src="rating.min.js"></script> -->

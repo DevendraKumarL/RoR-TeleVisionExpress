@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
-                
+
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -35,21 +28,21 @@
       </div>
     </nav>
 
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
-<div class="view_review">
-    <h3><%= @review_this_show.name %></h3>
-    <label>Tvshow Reviews by users</label>
-    <% @review.each do |review| %>
-    <div class="user_review">
-        <!-- User ID: <b><%= review.users_id %><br></b> -->
-        <f>User: <b><%= review.username %><br></b></f>
-        <f>Review :</f><br><b>
-        <div class="review_section">
-            <p>
-                <%= review.review %>
-            </p>
-        </div></b>
-    </div><br>
-    <% end %>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info"><p><h1>TVShow Reviews</h1></p></div>
+        <div class="well"><%= @review_this_show.name %></div>
+        <% @review.each do |review| %>
+            <div class="card">
+                <div class="card-block">
+                    <p class="card-title" style="font-size: 20px"><%= review.username %></p>
+                    <p class="card-text">
+                        <%= review.review %>
+                    </p>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </div>

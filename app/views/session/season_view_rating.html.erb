@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
                 
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -39,19 +32,23 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-<div class="view_review">
-    <h3><%= @rating_this_show.name %></h3>
-    <h4><%= @rating_this_season.season_name %></h4>
-    <h5>season Ratings by users</h5>
-    <% @rating.each do |rating| %>
-    <div class="user_review">
-        <b>User ID: </b><%= rating.users_id %><br>
-        <b>User: </b><%= rating.username %><br>
-        <b>Rating :</b><br>
-        <p>
-            <i class="material-icons" style="font-size:25px; display: inline;color: yellow;">grade</i><%= rating.rating %>
-        </p>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info"><p><h1>Season Ratings</h1></p></div>
+        <div class="well"><%= @rating_this_show.name %></div>
+        <label class="label label-primary"><h4><%= @rating_this_season.season_name %></h4></label>
+        <% @rating.each do |rating| %>
+            <div class="card">
+                <div class="card-block">
+                    <p class="card-title" style="font-size: 20px"><%= rating.username %></p>
+                    <p class="card-text">
+                        <h2><label class="label label-success">
+                            <i class="material-icons" style="color:yellow;">grade</i>
+                            <%= rating.rating %>
+                        </label></h2>
+                    </p>
+                </div>
+            </div>
+        <% end %>
     </div>
-    <% end %>
 </div>

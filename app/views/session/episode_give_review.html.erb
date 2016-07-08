@@ -9,17 +9,10 @@
         </div><br>
           <ul class="nav navbar-nav navbar-right">
             <% if @user %>
-                <script>
-                    swal(
-                        'Logged In',
-                        'Welcome to our Website',
-                        'success'
-                        )
-                </script>
-                
+
                 <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/destroy">Logout</a></button></li>
                 
-                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= username%></a></button></li>
+                <li><a class="btn btn-default navbar-btn btn-sm"  href="/session/profile"><%= @user.username%></a></button></li>
 
             <% else %>
                 
@@ -37,14 +30,21 @@
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<div class="view_review">
-    <h3><%= @review_this_show.name %></h3>
-    <h4><%= @review_this_season.season_name %></h4>
-    <h5><%= @review_this_episode.episode_name %></h5>
-    <form method="post" action="/session/tvshows/season/episode/review">
-        <input type="hidden" name="episodes_id" value="<%= @review_this_episode.id %>"></input>
-        Give review below<br>
-        <textarea name="review" rows="6" cols="80" required></textarea><br>
-        <input type="submit" value="Give Review"></input>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+            <h1><%= @review_this_show.name %></h1>
+            <p><%= @review_this_season.season_name %></p>
+            <p><%= @review_this_episode.episode_name %></p>
+        </div>
+        <form crole="form" method="post" action="/session/tvshows/season/episode/review">
+            <input type="hidden" name="episodes_id" value="<%= @review_this_episode.id %>"></input>
+            <div class="form-group">
+                <textarea placeholder="Write your review" name="review" class="form-control" rows="6" cols="80" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="Give Review"></input>
+            </div>
+        </form>
+    </div>
 </div>
